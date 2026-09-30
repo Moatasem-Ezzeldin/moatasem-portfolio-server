@@ -10,6 +10,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 
+// Routes
+const categoryRoute = require("./routes/categoryRoute");
+
 const dbConnection = require("./config/database");
 const ApiError = require("./utils/apiError");
 const globalError = require("./middlewares/errorMiddlewares");
@@ -39,9 +42,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Routes will be added here
+// Mount Routes
+app.use("/api/v1/categories", categoryRoute);
 
+// if route not find    
 app.use((req, res, next) => {
-    next(new ApiError(`Can't find this route: ${req.originalUrl}, 404`));
+    next(new ApiError(`Can't find this route: ${req.originalUrl}`, 404));
 });
 
 app.use(globalError);
