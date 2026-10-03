@@ -9,6 +9,14 @@ exports.getOne = [
     validatorMiddlewares,
 ];
 
+exports.getOneBySlug = [
+    check("slug")
+        .notEmpty()
+        .withMessage("Project slug is required")
+    ,
+    validatorMiddlewares,
+];
+
 exports.createOne = [
     check("title.en")
         .notEmpty()

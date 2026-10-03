@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const factory = require("../controllers/handlersFactory");
 const projectValidator = require("../validators/projectValidator");
+const projectControllers = require("../controllers/projectControllers");
 // upload sestem
 const upload = require("../utils/upload/multer");
 // Middlewares
@@ -39,7 +40,10 @@ router.route('/')
         factory.createOne(Project)
     )
 ;
-
+router.route('/:slug').get(
+    projectValidator.getOneBySlug,
+    projectControllers.getProjectBySlug,
+);
 router.route('/:id')
     .get(
         projectValidator.getOne,

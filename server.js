@@ -30,11 +30,7 @@ app.set("trust proxy", 1);
 app.use(hpp());
 app.set("query parser", "extended");
 
-app.use(
-    cors({
-        origin: process.env.CLIENT_BASE_URL,
-    })
-);
+app.use(cors({ origin: process.env.CLIENT_BASE_URL, credentials: true }));
 
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
