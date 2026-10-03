@@ -9,15 +9,15 @@ const hpp = require("hpp");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+dotenv.config({ path: ".env" });
 
 // Routes
 const categoryRoute = require("./routes/categoryRoute");
+const projectRoute = require("./routes/projectRoute");
 
 const dbConnection = require("./config/database");
 const ApiError = require("./utils/apiError");
 const globalError = require("./middlewares/errorMiddlewares");
-
-dotenv.config({ path: ".env" });
 
 dbConnection();
 
@@ -44,6 +44,7 @@ if (process.env.NODE_ENV === "development") {
 // Routes will be added here
 // Mount Routes
 app.use("/api/v1/categories", categoryRoute);
+app.use("/api/v1/projects", projectRoute);
 
 // if route not find    
 app.use((req, res, next) => {

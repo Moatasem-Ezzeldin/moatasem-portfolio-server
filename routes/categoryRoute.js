@@ -2,6 +2,7 @@ const Category = require("../models/categoryModel");
 const express = require("express");
 const router = express.Router();
 const factory = require("../controllers/handlersFactory");
+const categoryControllers = require("../controllers/categoryControllers");
 const categoryValidator = require("../validators/categoryValidator");
 
 router.route('/')
@@ -14,7 +15,7 @@ router.route('/:id')
     .put(categoryValidator.updateOne, factory.updateOne(Category))
     .delete(
         categoryValidator.deleteOne,
-        factory.deleteOne(Category)
+        categoryControllers.deleteCategory
     )
 ;
 

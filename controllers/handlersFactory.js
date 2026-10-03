@@ -28,30 +28,58 @@ exports.createOne = (Model) => asyncHandler(async (req, res) => {
     res.status(201).json({data: document});   
 });
 
-exports.getOne = (Model) => asyncHandler(async (req, res, next) => {
-    const { id } = req.params;
-    const document = await Model.findById(id);
-    if(!document) {
-        return next(new ApiError(`No document for this id: ${id}`, 404));
-    }
-    res.status(200).json({ data: document, });
+exports.getOne = (Model, populateOptions) => asyncHandler(async (req, res, next) => {
+        const { id } = req.params;
+
+        let query = Model.findById(id);
+
+        if (populateOptions) {
+            query = query.populate(populateOptions);
+        }
+
+        const document = await query;
+
+        if (!document) {
+            return next(
+                new ApiError(`No document for this id: ${id}`, 404)
+            );
+        }
+
+        res.status(200).json({
+            data: document,
+        });
 });
 
-exports.getAll = (Model, searchFields = []) => asyncHandler(async (req, res) => {
+exports.getAll = (Model, searchFields = [], populateOptions) => asyncHandler(async (req, res) => {
+
     let filterObject = {};
-    if(req.filterObject) {
-        filterObject = req.filterObject
+
+    if (req.filterObject) {
+        filterObject = req.filterObject;
     }
-    const documentsCount = await Model.countDocuments();
-    const apiFeatures = new ApiFeatures(Model.find(filterObject), req.query)
+
+    const documentsCount = await Model.countDocuments(filterObject);
+
+    let query = Model.find(filterObject);
+
+    if (populateOptions) {
+        query = query.populate(populateOptions);
+    }
+
+    const apiFeatures = new ApiFeatures(query, req.query)
         .paginate(documentsCount)
         .filter()
         .sort()
         .search(searchFields)
-        .limitFields()
-    ;
-    // Excute query
-    const { mongooseQuery,  paginationResult} = apiFeatures;
-    const document = await mongooseQuery;
-    res.status(200).json({ results: document.length, paginationResult, data: document, });
+        .limitFields();
+
+    const { mongooseQuery, paginationResult } = apiFeatures;
+
+    const documents = await mongooseQuery;
+
+    res.status(200).json({
+        results: documents.length,
+        paginationResult,
+        data: documents,
+    });
 });
