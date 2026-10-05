@@ -40,7 +40,7 @@ router.route('/')
         factory.createOne(Project)
     )
 ;
-router.route('/:slug').get(
+router.route('/slug/:slug').get(
     projectValidator.getOneBySlug,
     projectControllers.getProjectBySlug,
 );
