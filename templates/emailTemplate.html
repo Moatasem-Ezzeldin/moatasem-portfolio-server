@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- HEAD HTML -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Message From Moatasem Portfolio</title>
+    <style>
+      .body {
+        margin: 0;
+        padding: 30px 15px;
+        background-color: #f1f5f9;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .email-container {
+        width: 100%;
+        max-width: 650px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+      }
+      .header {
+        padding: 30px;
+        background-color: #2563eb;
+        color: #ffffff;
+      }
+      .header-title {
+        margin: 0 0 8px;
+        font-size: 26px;
+      }
+      .header-subtitle {
+        margin: 0;
+        font-size: 16px;
+      }
+      .content {
+        padding: 30px;
+      }
+      .section-title {
+        margin: 0 0 25px;
+        color: #0f172a;
+        font-size: 20px;
+      }
+      .field {
+        margin-bottom: 20px;
+      }
+      .field-label {
+        margin: 0 0 6px;
+        color: #64748b;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .field-value {
+        margin: 0;
+        color: #0f172a;
+        font-size: 15px;
+      }
+      .field-link {
+        color: #2563eb;
+        font-size: 15px;
+        text-decoration: none;
+      }
+      .message-section {
+        margin-top: 30px;
+      }
+      .message {
+        padding: 18px;
+        background-color: #f8fafc;
+        border-left: 4px solid #2563eb;
+        border-radius: 8px;
+        color: #334155;
+        font-size: 15px;
+        line-height: 1.7;
+        white-space: pre-line;
+        overflow-wrap: break-word;
+      }
+      .divider {
+        margin: 30px 0;
+        border-top: 1px dashed #cbd5e1;
+      }
+      .footer {
+        padding: 20px 30px;
+        background-color: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        text-align: center;
+      }
+      .footer-text {
+        margin: 0;
+        color: #64748b;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <!-- BODY HTML -->
+  <body class="body">
+    <!-- Container -->
+    <div class="email-container">
+      <!-- header -->
+      <div class="header">
+        <h1 class="header-title">Moatasem Ezzeldin</h1>
+        <p class="header-subtitle">New message From your Portfolio.</p>
+      </div>
+      <!-- Container info -->
+      <div class="content">
+        <h2 class="section-title">
+          Contact Information
+        </h2>
+        <!-- Full Name -->
+        <div class="field">
+          <p class="field-label">Full Name:</p>
+          <p class="field-value">{{fullName}}</p>
+        </div>
+        <!-- Email -->
+        <div class="field">
+          <p class="field-label">Email:</p>
+          <p class="field-value">{{email}}</p>
+        </div>
+        <!-- Subject -->
+        <div class="field">
+          <p class="field-label">Subject:</p>
+          <p class="field-value">{{subject}}</p>
+        </div>
+        <!-- BR ----- -->
+        <div class="divider"></div>
+        <!-- Message -->
+        <div class="message-section">
+          <h2 class="section-title">Message</h2>
+          <div class="message">{{message}}</div>
+        </div>
+      </div>
+      <div class="footer">
+        <p class="footer-text">Sent from Moatasem Portfolio Contact Form</p>
+      </div>
+    </div>
+  </body>
+</html>

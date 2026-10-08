@@ -14,6 +14,7 @@ dotenv.config({ path: ".env" });
 // Routes
 const categoryRoute = require("./routes/categoryRoute");
 const projectRoute = require("./routes/projectRoute");
+const contactRoute = require("./routes/contactRoute");
 
 const dbConnection = require("./config/database");
 const ApiError = require("./utils/apiError");
@@ -41,6 +42,7 @@ if (process.env.NODE_ENV === "development") {
 // Mount Routes
 app.use("/api/v1/categories", categoryRoute);
 app.use("/api/v1/projects", projectRoute);
+app.use("/api/v1/emails", contactRoute);
 
 // if route not find    
 app.use((req, res, next) => {
